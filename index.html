@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>The Stellars Club | Shayari & Music Open Mic</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/feather-icons"></script>
+
+<script src="components/navbar.js"></script>
+<script src="components/footer.js"></script>
+<script src="components/event-card.js"></script>
+
+<style>
+/* ===== Carousel ===== */
+.past-events-carousel {
+    display: flex;
+    gap: 1rem;
+    will-change: transform;
+}
+
+.carousel-img {
+    transition: transform 0.4s ease;
+}
+
+.carousel-img:hover {
+    transform: translateY(-8px) scale(1.02);
+}
+
+/* ===== Fullscreen Image Viewer ===== */
+#imageViewer {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.9);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+#imageViewer img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 1rem;
+}
+</style>
+</head>
+
+<body class="bg-black text-gray-100 font-sans">
+
+<custom-navbar></custom-navbar>
+
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+<!-- ================= HERO ================= -->
+<section class="py-20 text-center">
+    <h1 class="text-5xl md:text-6xl font-bold mb-6 text-yellow-400">
+        The Stellars Club
+    </h1>
+    <p class="text-xl md:text-2xl mb-8">
+       Your stage awaits. Unleash your talent in poetry, singing, and stand-up comedy before an audience that celebrates artistry.
+    </p>
+    <div class="flex justify-center gap-4">
+        <a href="#events"
+           class="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 px-6 rounded-full">
+            Upcoming Events
+        </a>
+        <a href="#perform"
+           class="border-2 border-yellow-500 hover:bg-yellow-500 hover:text-black font-bold py-3 px-6 rounded-full">
+            Perform With Us
+        </a>
+    </div>
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section class="py-16">
+    <div class="flex flex-col md:flex-row items-center gap-12">
+        <img src="logo.jpg" class="md:w-1/2 rounded-xl shadow-2xl">
+        <div class="md:w-1/2">
+            <h2 class="text-3xl font-bold mb-6 text-yellow-400">Our Stage Awaits</h2>
+            <p class="mb-4 text-lg">
+                A sanctuary for poets, singers, and storytellers.
+            </p>
+            <div class="flex gap-6">
+                <span class="flex items-center gap-2"><i data-feather="mic"></i> Poetry</span>
+                <span class="flex items-center gap-2"><i data-feather="music"></i> Singing</span>
+                <span class="flex items-center gap-2"><i data-feather="book"></i> Stories</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ================= PAST EVENTS CAROUSEL ================= -->
+<section class="py-16">
+<h2 class="text-3xl font-bold mb-8 text-center text-yellow-400">
+Past Events
+</h2>
+
+<div class="relative overflow-hidden">
+    <div id="carousel" class="past-events-carousel"></div>
+
+    <button id="prev"
+        class="absolute left-0 top-1/2 -translate-y-1/2 bg-black/60 text-yellow-400 p-2 rounded-full">
+        <i data-feather="chevron-left"></i>
+    </button>
+
+    <button id="next"
+        class="absolute right-0 top-1/2 -translate-y-1/2 bg-black/60 text-yellow-400 p-2 rounded-full">
+        <i data-feather="chevron-right"></i>
+    </button>
+</div>
+</section>
+
+<!-- ================= UPCOMING EVENTS ================= -->
+<section id="events" class="py-16">
+<h2 class="text-3xl font-bold mb-8 text-center text-yellow-400">
+Upcoming Events
+</h2>
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<custom-event-card
+    title="Stellar Poetry Night"
+    date="June 15, 2025"
+    time="7:00 PM"
+    location="Main Stage"
+    image="up.jpeg">
+</custom-event-card>
+</div>
+</section>
+
+<!-- ================= PERFORM ================= -->
+<section id="perform" class="py-16 bg-gray-900 rounded-xl px-8">
+    <h2 class="text-3xl font-bold mb-6 text-center text-yellow-400">Want to Perform?</h2>
+    <form class="max-w-md mx-auto space-y-4">
+        <input class="w-full p-3 rounded bg-gray-800" placeholder="Name">
+        <input class="w-full p-3 rounded bg-gray-800" placeholder="Email">
+        <textarea class="w-full p-3 rounded bg-gray-800 h-32" placeholder="Your performance"></textarea>
+        <button class="w-full bg-yellow-500 text-black font-bold py-3 rounded">
+            Submit
+        </button>
+    </form>
+</section>
+
+</main>
+
+<custom-footer></custom-footer>
+
+<!-- ================= IMAGE VIEWER ================= -->
+<div id="imageViewer">
+    <img id="viewerImg">
+</div>
+
+<script>
+feather.replace();
+
+/* ================= CAROUSEL ================= */
+const carousel = document.getElementById('carousel');
+const images = ['P7.jpeg','P2.jpg','P3.jpg','P4.jpg','P5.jpeg','P6.jpeg'];
+const fullList = [...images, ...images];
+
+fullList.forEach(src => {
+    const img = document.createElement('img');
+    img.src = src;
+    img.className =
+        'carousel-img w-72 h-72 sm:w-80 sm:h-80 object-cover rounded-xl shadow-lg flex-shrink-0';
+    carousel.appendChild(img);
+});
+
+let index = 0;
+let startX = 0;
+let isDragging = false;
+
+function slideWidth() {
+    return carousel.querySelector('img').offsetWidth + 16;
+}
+
+function moveCarousel() {
+    carousel.style.transition = 'transform 0.6s ease';
+    carousel.style.transform = `translateX(-${index * slideWidth()}px)`;
+
+    if (index >= images.length) {
+        setTimeout(() => {
+            carousel.style.transition = 'none';
+            index = 0;
+            carousel.style.transform = `translateX(0)`;
+        }, 600);
+    }
+}
+
+document.getElementById('next').onclick = () => {
+    index++;
+    moveCarousel();
+};
+
+document.getElementById('prev').onclick = () => {
+    index = index <= 0 ? images.length - 1 : index - 1;
+    moveCarousel();
+};
+
+setInterval(() => {
+    index++;
+    moveCarousel();
+}, 5000);
+
+/* ===== Swipe ===== */
+carousel.addEventListener('touchstart', e => {
+    startX = e.touches[0].clientX;
+    isDragging = true;
+});
+
+carousel.addEventListener('touchend', e => {
+    if (!isDragging) return;
+    const diff = startX - e.changedTouches[0].clientX;
+    if (diff > 50) index++;
+    if (diff < -50) index--;
+    moveCarousel();
+    isDragging = false;
+});
+
+/* ================= IMAGE VIEWER ================= */
+const viewer = document.getElementById('imageViewer');
+const viewerImg = document.getElementById('viewerImg');
+
+document.addEventListener('dblclick', e => {
+    if (e.target.tagName === 'IMG') {
+        viewerImg.src = e.target.src;
+        viewer.style.display = 'flex';
+    }
+});
+
+viewer.onclick = () => viewer.style.display = 'none';
+</script>
+
+</body>
+</html>

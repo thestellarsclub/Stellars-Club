@@ -1,0 +1,59 @@
+/* Custom styles */
+body {
+    scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #111;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #d1a054;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #b78a3a;
+}
+
+/* Animation for hero section */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-content {
+    animation: fadeIn 1s ease-out forwards;
+}
+
+/* Past events carousel */
+.past-events-carousel {
+    display: flex;
+    transition: transform 0.5s ease;
+    padding: 0 50px;
+}
+
+/* Performance form focus styles */
+input:focus, textarea:focus, select:focus {
+    box-shadow: 0 0 0 2px rgba(234, 179, 8, 0.5);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 3rem;
+    }
+    
+    .hero-content p {
+        font-size: 1.25rem;
+    }
+    
+    .past-events-carousel {
+        padding: 0 20px;
+    }
+}
