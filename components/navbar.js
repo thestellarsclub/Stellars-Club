@@ -35,8 +35,8 @@ class CustomNavbar extends HTMLElement {
                         <a href="/" class="nav-link">Home</a>
                         <a href="#events" class="nav-link">Events</a>
                         <a href="#perform" class="nav-link">Perform</a>
-                        <a href="#" class="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-2 px-4 rounded-full transition duration-300">
-                            Join Us
+                        <a href="https://www.instagram.com/thestellars_club/?hl" class="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-2 px-4 rounded-full transition duration-300">
+                            Contact Us
                         </a>
                     </div>
 
