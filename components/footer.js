@@ -26,15 +26,11 @@ class CustomFooter extends HTMLElement {
                             Where voices shine as bright as the stars.
                         </p>
                         <div class="flex space-x-4">
-                            <a href="#" class="social-icon" aria-label="Facebook">
-                                <i data-feather="facebook"></i>
-                            </a>
+                            
                             <a href="#" class="social-icon" aria-label="Instagram">
                                 <i data-feather="instagram"></i>
                             </a>
-                            <a href="#" class="social-icon" aria-label="Twitter">
-                                <i data-feather="twitter"></i>
-                            </a>
+                            
                             <a href="#" class="social-icon" aria-label="YouTube">
                                 <i data-feather="youtube"></i>
                             </a>
@@ -62,11 +58,7 @@ class CustomFooter extends HTMLElement {
                                     Perform With Us
                                 </a>
                             </li>
-                            <li>
-                                <a href="#" class="hover:text-yellow-400 transition duration-300">
-                                    Gallery
-                                </a>
-                            </li>
+                           
                         </ul>
                     </div>
 
@@ -78,15 +70,15 @@ class CustomFooter extends HTMLElement {
                         <div class="space-y-2">
                             <div class="flex items-center space-x-2">
                                 <i data-feather="mail" class="text-yellow-400"></i>
-                                <span>contact@thestellarsclub.com</span>
+                                <span>Thestellarsc.com</span>
                             </div>
                             <div class="flex items-center space-x-2">
                                 <i data-feather="phone" class="text-yellow-400"></i>
-                                <span>+1 (555) 123-4567</span>
+                                <span>+91 9911795801</span>
                             </div>
                             <div class="flex items-center space-x-2">
                                 <i data-feather="map-pin" class="text-yellow-400"></i>
-                                <span>123 Stellar Avenue, Poetry City</span>
+                                <span>Jamia Nagar, Okhla</span>
                             </div>
                         </div>
                     </div>
