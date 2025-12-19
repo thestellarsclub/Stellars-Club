@@ -50,8 +50,8 @@ class CustomNavbar extends HTMLElement {
                     <a href="/" class="block nav-link">Home</a>
                     <a href="#events" class="block nav-link">Events</a>
                     <a href="#perform" class="block nav-link">Perform</a>
-                    <a href="#" class="block bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-2 px-4 rounded-full transition duration-300 w-max">
-                        Join Us
+                    <a href="https://www.instagram.com/thestellars_club/?hl" class="block bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-2 px-4 rounded-full transition duration-300 w-max">
+                        Contact 
                     </a>
                 </div>
             </nav>
