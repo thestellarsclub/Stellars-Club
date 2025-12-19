@@ -27,11 +27,11 @@ class CustomFooter extends HTMLElement {
                         </p>
                         <div class="flex space-x-4">
                             
-                            <a href="#" class="social-icon" aria-label="Instagram">
+                            <a href="https://www.instagram.com/thestellars_club/?hl" class="social-icon" aria-label="Instagram">
                                 <i data-feather="instagram"></i>
                             </a>
                             
-                            <a href="#" class="social-icon" aria-label="YouTube">
+                            <a href="https://www.youtube.com/@Thestellars_club" class="social-icon" aria-label="YouTube">
                                 <i data-feather="youtube"></i>
                             </a>
                         </div>
